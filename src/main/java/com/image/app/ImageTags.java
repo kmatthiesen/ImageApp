@@ -1,6 +1,5 @@
 package com.image.app;
 
-import com.drew.metadata.Tag;
 import com.image.app.util.AttributeHandler;
 
 import java.util.ArrayList;

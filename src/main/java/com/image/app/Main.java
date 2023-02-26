@@ -1,9 +1,5 @@
 package com.image.app;
 
-import com.drew.imaging.ImageMetadataReader;
-import com.drew.metadata.Directory;
-import com.drew.metadata.Metadata;
-import com.drew.metadata.Tag;
 import com.image.app.util.AttributeHandler;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -12,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
 
 import java.io.File;
 import java.net.URI;
@@ -27,11 +24,13 @@ public class Main extends Application {
         root.setHgap(10);
         root.setVgap(10);
 
-        ImageTags tags = new ImageTags("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image1.jpg");
+//        ImageTags tags = new ImageTags("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image1.png");
 
-        Label greeting = new Label(tags.toString());
-        greeting.setTextFill(Color.BLUE);
-        root.getChildren().add(greeting);
+        MetadataExample.metadataExample(new File("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\file_example_PNG_500kb.png"));
+
+//        Label greeting = new Label(tags.toString());
+//        greeting.setTextFill(Color.BLUE);
+//        root.getChildren().add(greeting);
 
         primaryStage.setTitle("Image App");
         primaryStage.setScene(new Scene(root, 300, 275));
