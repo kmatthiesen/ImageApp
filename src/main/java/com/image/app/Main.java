@@ -1,6 +1,7 @@
 package com.image.app;
 
 import com.image.app.util.AttributeHandler;
+import com.image.app.util.ImageUtil;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,6 +18,11 @@ import java.util.List;
 
 public class Main extends Application {
 
+    private static final String basePath = "C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\";
+    private static final String sourcePath = basePath + "image3.jpg";
+    private static final String targetPath = basePath + "image3Test.jpg";
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         GridPane root = new GridPane();
@@ -24,9 +30,21 @@ public class Main extends Application {
         root.setHgap(10);
         root.setVgap(10);
 
-//        ImageTags tags = new ImageTags("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image1.png");
+//        ImageUtil.copyFile(sourcePath, targetPath);
 
-        MetadataExample.metadataExample(new File("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\file_example_PNG_500kb.png"));
+        File file1 = new File (sourcePath);
+        File file2 = new File (targetPath);
+
+        List<String> newKeywords = new ArrayList<>();
+        newKeywords.add("success");
+        newKeywords.add("help");
+
+//        AttributeHandler.getKeywords(targetPath);
+        AttributeHandler.addKeywords(newKeywords, file1, file2);
+
+//        ImageTags tags = new ImageTags("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image3.jpg");
+
+//        MetadataExample.metadataExample(new File("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image1.jpg"));
 
 //        Label greeting = new Label(tags.toString());
 //        greeting.setTextFill(Color.BLUE);
