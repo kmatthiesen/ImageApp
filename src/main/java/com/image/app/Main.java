@@ -1,10 +1,10 @@
 package com.image.app;
 
 import com.image.app.controller.ImageController;
+import com.image.app.util.ImageUtil;
 import javafx.application.Application;
-import javafx.geometry.Pos;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -19,13 +19,15 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        GridPane root = new GridPane();
-        root.setAlignment(Pos.CENTER);
-        root.setHgap(10);
-        root.setVgap(10);
+    public void start(Stage stage) throws Exception{
 
-//        ImageUtil.copyFile(sourcePath, targetPath);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+        stage.setTitle("Image App");
+        Scene scene = new Scene(fxmlLoader.load(), 300, 275);
+        stage.setScene(scene);
+        stage.show();
+
+        ImageUtil.copyFile(sourcePath, targetPath);
 
         File file1 = new File (sourcePath);
         File file2 = new File (targetPath);
@@ -34,24 +36,13 @@ public class Main extends Application {
         newKeywords.add("success");
         newKeywords.add("help");
 
-//        AttributeHandler.getKeywords(targetPath);
+        ImageController.getKeywords(targetPath);
         ImageController.addKeywords(newKeywords, file1, file2);
 
-//        ImageTags tags = new ImageTags("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image3.jpg");
-
-//        MetadataExample.metadataExample(new File("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image1.jpg"));
-
-//        Label greeting = new Label(tags.toString());
-//        greeting.setTextFill(Color.BLUE);
-//        root.getChildren().add(greeting);
-
-        primaryStage.setTitle("Image App");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
     }
 
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }
