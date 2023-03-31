@@ -1,10 +1,10 @@
 package com.image.app;
 
 import com.image.app.controller.ImageController;
+import com.image.app.util.ImageUtil;
 import javafx.application.Application;
-import javafx.geometry.Pos;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -15,16 +15,18 @@ import java.util.List;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        GridPane root = new GridPane();
-        root.setAlignment(Pos.CENTER);
-        root.setHgap(10);
-        root.setVgap(10);
+    public void start(Stage stage) throws Exception{
 
         URL sourcePath = Main.class.getResource("../../../images/image3.jpg");
         URL targetPath = Main.class.getResource("../../../images/image3Test.jpg");
 
-//        ImageUtil.copyFile(sourcePath, targetPath);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+        stage.setTitle("Image App");
+        Scene scene = new Scene(fxmlLoader.load(), 300, 275);
+        stage.setScene(scene);
+        stage.show();
+
+        ImageUtil.copyFile(sourcePath.getPath(), targetPath.getPath());
 
         File file1 = new File (sourcePath.getPath());
         File file2 = new File (targetPath.getPath());
@@ -36,12 +38,10 @@ public class Main extends Application {
 //        ImageController.getKeywords(targetPath.getPath());
         ImageController.addKeywords(newKeywords, file1, file2);
 
-
-
     }
 
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }

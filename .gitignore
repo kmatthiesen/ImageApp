@@ -185,19 +185,27 @@ build/
 .#*
 *#
 *~
-.classpath
-.project
-.settings
 bin
 build
 target
-dependency-reduced-pom.xml
 *.sublime-*
 /scratch
 .gradle
 README.html
-*.iml
 .idea
 .exercism
 *.jpg
 *.png
+
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+
+
+### Mac OS ###
+.DS_Store
