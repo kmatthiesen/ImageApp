@@ -10,7 +10,10 @@ import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 import org.apache.commons.imaging.formats.tiff.constants.MicrosoftTagConstants;
+import org.apache.commons.imaging.formats.tiff.constants.TiffConstants;
+import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldType;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputDirectory;
+import org.apache.commons.imaging.formats.tiff.write.TiffOutputField;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 
 import java.io.*;
@@ -62,10 +65,14 @@ public class ImageController {
 
         final List<ImageMetadata.ImageMetadataItem> items = jpegImageMetadata.getItems();
 
+//        jpegImageMetadata.getItems()
+//
+//        items.
+
         for (final ImageMetadata.ImageMetadataItem item : items) {
-//                    System.out.println(item);
+                    System.out.println(item);
             if (item.toString().contains(MicrosoftTagConstants.EXIF_TAG_XPKEYWORDS.name) && item instanceof GenericImageMetadata.GenericImageMetadataItem tags) {
-//                System.out.println(tags);
+                System.out.println(tags);
                 String replaced = tags.getText().replace("'", "");
                 keywords.addAll(Arrays.asList(replaced.split(";")));
             }
@@ -91,11 +98,12 @@ public class ImageController {
                 }
             }
 
+
             if (outputSet == null) {
                 outputSet = new TiffOutputSet();
             }
 
-            final TiffOutputDirectory rootDir = outputSet.getExifDirectory();
+            final TiffOutputDirectory rootDir = outputSet.getOrCreateRootDirectory();
 
             StringBuilder newKeywords = new StringBuilder();
 
@@ -103,16 +111,21 @@ public class ImageController {
                 newKeywords.append(keyword).append(";");
             }
 
-            outputSet.removeField(MicrosoftTagConstants.EXIF_TAG_XPKEYWORDS);
-
+//            outputSet.removeField(MicrosoftTagConstants.EXIF_TAG_XPKEYWORDS);
 //            rootDir.removeField(MicrosoftTagConstants.EXIF_TAG_XPKEYWORDS);
+            System.out.println(outputSet);
             System.out.println(rootDir.findField(MicrosoftTagConstants.EXIF_TAG_XPKEYWORDS));
             System.out.println(outputSet.findField(MicrosoftTagConstants.EXIF_TAG_XPKEYWORDS));
-            rootDir.add(MicrosoftTagConstants.EXIF_TAG_XPKEYWORDS, newKeywords.toString());
+//            rootDir.add(MicrosoftTagConstants.EXIF_TAG_XPKEYWORDS, newKeywords.toString());
+//            rootDir.add(new TiffOutputField(MicrosoftTagConstants.EXIF_TAG_XPKEYWORDS, FieldType.BYTE,newKeywords.toString().getBytes("UTF-16").length,newKeywords.toString().getBytes("UTF-16")));
             System.out.println(rootDir.findField(MicrosoftTagConstants.EXIF_TAG_XPKEYWORDS));
             System.out.println(outputSet.findField(MicrosoftTagConstants.EXIF_TAG_XPKEYWORDS));
+            System.out.println(outputSet);
 
-            new ExifRewriter().updateExifMetadataLossy(source, os, outputSet);
+//            outputSet.addDirectory(rootDir);
+
+            new ExifRewriter().removeExifMetadata(source, os);
+//            new ExifRewriter().updateExifMetadataLossy(source, os, outputSet);
 
         } catch (IOException | ImageReadException | ImageWriteException e) {
             e.printStackTrace();

@@ -8,15 +8,11 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends Application {
-
-    private static final String basePath = "C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\";
-    private static final String sourcePath = basePath + "image3.jpg";
-    private static final String targetPath = basePath + "image3Test.jpg";
-
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -25,29 +21,23 @@ public class Main extends Application {
         root.setHgap(10);
         root.setVgap(10);
 
+        URL sourcePath = Main.class.getResource("../../../images/image3.jpg");
+        URL targetPath = Main.class.getResource("../../../images/image3Test.jpg");
+
 //        ImageUtil.copyFile(sourcePath, targetPath);
 
-        File file1 = new File (sourcePath);
-        File file2 = new File (targetPath);
+        File file1 = new File (sourcePath.getPath());
+        File file2 = new File (targetPath.getPath());
 
         List<String> newKeywords = new ArrayList<>();
         newKeywords.add("success");
         newKeywords.add("help");
 
-//        AttributeHandler.getKeywords(targetPath);
+//        ImageController.getKeywords(targetPath.getPath());
         ImageController.addKeywords(newKeywords, file1, file2);
 
-//        ImageTags tags = new ImageTags("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image3.jpg");
 
-//        MetadataExample.metadataExample(new File("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image1.jpg"));
 
-//        Label greeting = new Label(tags.toString());
-//        greeting.setTextFill(Color.BLUE);
-//        root.getChildren().add(greeting);
-
-        primaryStage.setTitle("Image App");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
     }
 
 
