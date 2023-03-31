@@ -1,15 +1,9 @@
 package com.image.app;
 
-import com.image.app.controller.ImageController;
 import javafx.application.Application;
-import javafx.geometry.Pos;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main extends Application {
 
@@ -19,23 +13,25 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        GridPane root = new GridPane();
-        root.setAlignment(Pos.CENTER);
-        root.setHgap(10);
-        root.setVgap(10);
+    public void start(Stage stage) throws Exception{
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+        stage.setTitle("Image App");
+        Scene scene = new Scene(fxmlLoader.load(), 300, 275);
+        stage.setScene(scene);
+        stage.show();
 
 //        ImageUtil.copyFile(sourcePath, targetPath);
 
-        File file1 = new File (sourcePath);
-        File file2 = new File (targetPath);
-
-        List<String> newKeywords = new ArrayList<>();
-        newKeywords.add("success");
-        newKeywords.add("help");
+//        File file1 = new File (sourcePath);
+//        File file2 = new File (targetPath);
+//
+//        List<String> newKeywords = new ArrayList<>();
+//        newKeywords.add("success");
+//        newKeywords.add("help");
 
 //        AttributeHandler.getKeywords(targetPath);
-        ImageController.addKeywords(newKeywords, file1, file2);
+//        ImageController.addKeywords(newKeywords, file1, file2);
 
 //        ImageTags tags = new ImageTags("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image3.jpg");
 
@@ -45,9 +41,7 @@ public class Main extends Application {
 //        greeting.setTextFill(Color.BLUE);
 //        root.getChildren().add(greeting);
 
-        primaryStage.setTitle("Image App");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+
     }
 
 

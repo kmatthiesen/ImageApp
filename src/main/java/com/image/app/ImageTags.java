@@ -1,6 +1,6 @@
 package com.image.app;
 
-import com.image.app.controller.ImageController;
+import com.image.app.ImageController;
 
 import java.util.ArrayList;
 import java.util.List;
