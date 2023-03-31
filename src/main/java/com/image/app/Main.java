@@ -1,18 +1,13 @@
 package com.image.app;
 
-import com.image.app.util.AttributeHandler;
-import com.image.app.util.ImageUtil;
+import com.image.app.controller.ImageController;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
 
 import java.io.File;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +35,7 @@ public class Main extends Application {
         newKeywords.add("help");
 
 //        AttributeHandler.getKeywords(targetPath);
-        AttributeHandler.addKeywords(newKeywords, file1, file2);
+        ImageController.addKeywords(newKeywords, file1, file2);
 
 //        ImageTags tags = new ImageTags("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image3.jpg");
 
