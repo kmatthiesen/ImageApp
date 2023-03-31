@@ -1,9 +1,15 @@
 package com.image.app;
 
+import com.image.app.controller.ImageController;
+import com.image.app.util.ImageUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
 
@@ -21,31 +27,22 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
-//        ImageUtil.copyFile(sourcePath, targetPath);
+        ImageUtil.copyFile(sourcePath, targetPath);
 
-//        File file1 = new File (sourcePath);
-//        File file2 = new File (targetPath);
-//
-//        List<String> newKeywords = new ArrayList<>();
-//        newKeywords.add("success");
-//        newKeywords.add("help");
+        File file1 = new File (sourcePath);
+        File file2 = new File (targetPath);
 
-//        AttributeHandler.getKeywords(targetPath);
-//        ImageController.addKeywords(newKeywords, file1, file2);
+        List<String> newKeywords = new ArrayList<>();
+        newKeywords.add("success");
+        newKeywords.add("help");
 
-//        ImageTags tags = new ImageTags("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image3.jpg");
-
-//        MetadataExample.metadataExample(new File("C:\\Users\\round\\code\\ImageApp\\src\\main\\resources\\images\\image1.jpg"));
-
-//        Label greeting = new Label(tags.toString());
-//        greeting.setTextFill(Color.BLUE);
-//        root.getChildren().add(greeting);
-
+        ImageController.getKeywords(targetPath);
+        ImageController.addKeywords(newKeywords, file1, file2);
 
     }
 
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }
