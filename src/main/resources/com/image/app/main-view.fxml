@@ -5,12 +5,42 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      >
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
+<BorderPane
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="com.image.app.controllers.MainController"
+>
+    <top>
+        <HBox minHeight="115" maxHeight="120" alignment="CENTER" style="-fx-border-width: 3; -fx-border-style: dashed;">
+            <Label
+                    text="Navigation, controls, etc"
+            />
+        </HBox>
+    </top>
+<!--    TODO: Not sure we need a left pane for navigation or not-->
+<!--    <left>-->
+<!--        <VBox alignment="CENTER" style="-fx-border-width: 3; -fx-border-style: dashed;">-->
+<!--            <Label text="Left Pane"/>-->
+<!--        </VBox>-->
+<!--    </left>-->
+    <center>
+        <TilePane hgap="10" vgap="10" fx:id="centerTilePane">
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!"/>
-</VBox>
+        </TilePane>
+    </center>
+    <right>
+        <VBox minWidth="350" maxWidth="350" alignment="CENTER" style="-fx-border-width: 3; -fx-border-style: dashed;">
+            <Label text="Images details pane"/>
+        </VBox>
+    </right>
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-border-width: 3; -fx-border-style: dashed;">
+            <Label
+                    text="Footer, status, item count, etc"
+            />
+        </HBox>
+    </bottom>
+
+</BorderPane>

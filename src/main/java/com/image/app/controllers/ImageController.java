@@ -1,4 +1,4 @@
-package com.image.app.controller;
+package com.image.app.controllers;
 
 
 import org.apache.commons.imaging.ImageReadException;
@@ -10,10 +10,7 @@ import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 import org.apache.commons.imaging.formats.tiff.constants.MicrosoftTagConstants;
-import org.apache.commons.imaging.formats.tiff.constants.TiffConstants;
-import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldType;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputDirectory;
-import org.apache.commons.imaging.formats.tiff.write.TiffOutputField;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 
 import java.io.*;

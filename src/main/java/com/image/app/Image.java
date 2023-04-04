@@ -1,6 +1,6 @@
 package com.image.app;
 
-import com.image.app.controller.ImageController;
+import com.image.app.controllers.ImageController;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 
 import java.util.ArrayList;
