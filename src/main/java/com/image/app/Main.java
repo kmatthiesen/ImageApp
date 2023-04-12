@@ -19,9 +19,11 @@ public class Main extends Application {
 
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view2.fxml"));
         stage.setTitle("Image App");
         Scene scene = new Scene(fxmlLoader.load(), 1280, 1024);
+        stage.setMinWidth(900);
+        stage.setMinHeight(700);
         stage.setScene(scene);
         stage.show();
 
