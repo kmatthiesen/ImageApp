@@ -8,9 +8,14 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
@@ -54,19 +59,55 @@
             <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="View">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Left Pane" onAction="#toggleLeftPane" />
-            <MenuItem mnemonicParsing="false" text="Details Pane" onAction="#toggleDetailsPane" />
-          </items>
-        </Menu>
       </menus>
     </MenuBar>
+      <HBox minHeight="-Infinity" prefHeight="90.0">
+         <children>
+            <GridPane hgap="5.0" vgap="5.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="66.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="27.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ToggleButton fx:id="navButton" focusTraversable="false" mnemonicParsing="false" onAction="#toggleLeftPane" selected="true" text="Navigation Pane" textAlignment="CENTER" wrapText="true" />
+                  <Label text="Panes" textFill="#00000080" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1">
+                     <children>
+                        <ToggleButton fx:id="previewButton" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#toggleRightPane" text="Preview Pane">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="rightPaneGroup" />
+                           </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton fx:id="detailsButton" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#toggleRightPane" selected="true" text="Details Pane" toggleGroup="$rightPaneGroup" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </GridPane>
+         </children>
+      </HBox>
     <SplitPane fx:id="splitPane" dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane fx:id="leftPane">
           <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Master" textAlignment="CENTER" wrapText="false">
+            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Navigation" textAlignment="CENTER" wrapText="false">
               <font>
                 <Font size="18.0" fx:id="x1" />
               </font>
@@ -85,7 +126,7 @@
             </AnchorPane>
           </content>
         </ScrollPane>
-        <AnchorPane fx:id="detailsPane">
+        <AnchorPane fx:id="rightPane">
           <children>
             <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
           </children>

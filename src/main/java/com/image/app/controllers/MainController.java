@@ -3,7 +3,8 @@ package com.image.app.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 
 public class MainController {
 
@@ -12,12 +13,19 @@ public class MainController {
 
     @FXML
     private Node leftPane;
-    private boolean isLeftPaneVisible = true;
-    private double firstDivider;
-    private double secondDivider;
+    @FXML
+    private Node rightPane;
 
     @FXML
-    private AnchorPane detailsPane;
+    private ToggleButton navButton;
+    @FXML
+    private ToggleButton previewButton;
+    @FXML
+    private ToggleButton detailsButton;
+
+    @FXML
+    private ToggleGroup rightPaneGroup;
+
 
     public void initialize() {
 
@@ -50,34 +58,35 @@ public class MainController {
     @FXML
     private void toggleLeftPane() {
 
-
-
-        if (isLeftPaneVisible) {
-
-            firstDivider = splitPane.getDividers().get(0).getPosition();
-            secondDivider = splitPane.getDividers().get(1).getPosition();
-            splitPane.getItems().removeAll(leftPane);
-            splitPane.setDividerPosition(0, secondDivider);
-//            leftPane.setVisible(false);
-//            leftPane.setManaged(false);
-
-            isLeftPaneVisible = !isLeftPaneVisible;
-        } else {
-//            leftPane.setVisible(true);
-//            leftPane.setManaged(true);
+        if (navButton.isSelected()) {
             splitPane.getItems().add(0, leftPane);
-            splitPane.setDividerPosition(0, firstDivider);
-            isLeftPaneVisible = !isLeftPaneVisible;
+        } else {
+            splitPane.getItems().remove(leftPane);
+        }
+    }
+
+    @FXML
+    private void toggleRightPane() {
+
+        if (rightPaneGroup.getSelectedToggle() != null) {
+
+            ToggleButton currentToggle = (ToggleButton) rightPaneGroup.getSelectedToggle();
+
+            if (currentToggle.getText().contains("Details")) {
+                splitPane.getItems().add(rightPane);
+            } else {
+
+                splitPane.getItems().remove(rightPane);
+            }
+
+        } else {
+
+            splitPane.getItems().remove(rightPane);
+
         }
 
     }
 
-    @FXML
-    private void toggleDetailsPane() {
 
-    }
 
-    private void setDividers(int x1, double x2) {
-        splitPane.setDividerPosition(x1, x2);
-    }
 }
