@@ -70,9 +70,7 @@ public class MainController {
 
         if (rightPaneGroup.getSelectedToggle() != null) {
 
-            ToggleButton currentToggle = (ToggleButton) rightPaneGroup.getSelectedToggle();
-
-            if (currentToggle.getText().contains("Details")) {
+            if (((ToggleButton) rightPaneGroup.getSelectedToggle()).getText().contains("Details")) {
                 splitPane.getItems().add(rightPane);
             } else {
 
